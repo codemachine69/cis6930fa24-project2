@@ -45,16 +45,19 @@ To install and run this project:
 ### Prepare Mode
 
 Preprocess datasets and save them for training:
+
 `pipenv run python src/unredactor.py --mode prepare`
 
 ### Train Mode
 
 Train the model using preprocessed data:
+
 `pipenv run python src/unredactor.py --mode train`
 
 ### Test Mode
 
 Run predictions on a test file (`test.tsv`) and generate a submission file:
+
 `pipenv run python src/unredactor.py --mode test --test_file tests/test.tsv`
 
 ## Datasets
