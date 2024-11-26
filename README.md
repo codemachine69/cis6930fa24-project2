@@ -170,3 +170,4 @@ id name
 2. Name Ambiguity: The model may struggle with ambiguous contexts where multiple names are plausible.
 3. Redaction Length Dependency: The pipeline assumes that redaction blocks accurately represent name lengths; incorrect lengths may reduce accuracy.
 4. Limited Generalization: The model is trained on movie reviews, which may limit its performance on other types of text.
+5. The trained model is too large to be included in GitHub, hence the pipeline has to be run in gradescope in order to generate the model in `models/` directory.
