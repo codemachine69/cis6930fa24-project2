@@ -70,29 +70,40 @@ There are two datasets used in this project, which are included in `data/` direc
 ## Implementation Details
 
 1. `load_data(file_path)`
+
    - Purpose: Loads the unredactor.tsv dataset into a Pandas DataFrame, skipping any bad rows.
    - Input: Path to the unredactor.tsv file.
    - Output: A DataFrame with columns split, name, and context.
+
 2. `load_reviews(imdb_directory)`
+
    - Purpose: Loads all IMDB reviews (positive and negative) from train and test subdirectories.
    - Input: Path to the IMDB dataset directory.
    - Output: A list of review texts.
+
 3. `extract_person_entities(reviews)`
+
    - Purpose: Extracts PERSON entities (names) from the IMDB reviews using spaCy's NER model.
    - Input: List of review texts.
    - Output: A list of tuples, where each tuple contains a name and its corresponding review.
+
 4. `create_redacted_examples(extracted_data)`
+
    - Purpose: Replaces extracted names with redaction blocks (█) in their respective contexts to create synthetic redacted examples.
    - Input: List of tuples (name, context).
    - Output: A list of tuples (redacted name, redacted context).
+
 5. `merge_datasets(original_data, synthetic_data, limit=None)`
+
    - Purpose: Combines the original dataset (unredactor.tsv) with synthetic redacted examples.
    - Input:
      - Original dataset as a DataFrame.
      - Synthetic dataset as a list of tuples (name, context).
      - Optional limit to reduce dataset size for faster processing.
    - Output: A combined dataset as a DataFrame.
+
 6. `extract_features(context, redaction_length)`
+
    - Purpose: Extracts features from the text surrounding the redaction block (█).
    - Input:
      - Context text containing a redaction block.
@@ -103,31 +114,40 @@ There are two datasets used in this project, which are included in `data/` direc
      - Context length (context_length).
      - Number of named entities in the context (num_entities).
      - Whether a PERSON entity exists in the context (contains_person).
+
 7. `prepare_data(data)`
+
    - Purpose: Prepares features (X) and labels (y) for machine learning by processing each row in the dataset.
    - Input: Dataset as a DataFrame with columns name and context.
    - Output:
      - Features as a list of dictionaries (X).
      - Labels as a list of names (y).
+
 8. `train_classifier(X_train, y_train)`
+
    - Purpose: Trains a Random Forest classifier using features and labels.
    - Input:
      - Training features (X_train).
      - Training labels (y_train).
    - Output: A trained Random Forest model.
+
 9. `evaluate_classifier(model, X_val, y_val)`
+
    - Purpose: Evaluates the trained model on validation data using precision, recall, and F1-score metrics.
    - Input:
      - Trained model.
      - Validation features (X_val).
      - Validation labels (y_val).
    - Output: Prints evaluation metrics.
+
 10. `run_predictions(test_file_path, model)`
+
     - Purpose: Runs predictions on test data and generates a submission file (submission.tsv).
     - Input:
       - Path to the test file (test.tsv).
       - Trained model.
     - Output: Saves predictions in submission.tsv.
+
 11. `prepare_and_save(unredactor_file_path, imdb_directory_path, sample_size=None)`
     - Purpose:
       - Combines datasets from unredactor.tsv and IMDB reviews.
@@ -153,9 +173,13 @@ There are two datasets used in this project, which are included in `data/` direc
 The required submission `submission.tsv` is available in the directory `output`. The generated `submission.tsv` will look like this:
 
 id name
+
 1 Harry Potter
+
 2 Hermione Granger
+
 3 Ron Weasley
+
 ...
 
 ## Assumptions
