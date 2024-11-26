@@ -20,7 +20,7 @@ def load_unredactor_data(file_path):
         file_path,
         sep="\t",
         names=["split", "name", "context"],
-        on_bad_lines="skip"  # Skip problematic rows
+        on_bad_lines="skip"  
     )
     return data
 
